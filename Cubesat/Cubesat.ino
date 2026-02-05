@@ -20,14 +20,14 @@ const byte ADDR_TLM[6] = "OUT01";
 const int ANG_MIN = -30;
 const int ANG_MAX =  30;
 const float STEP = 0.05; // 0..1
-const int DELAY_MS = 800;
+const int DELAY_MS = 200;
 
 const unsigned int address_center_x = 10;
 const unsigned int address_center_y = 11;
 
 // Сервы (0 градусов по нашей системе = 90 градусов на серве)
 byte CENTER_X = 90;
-byte CENTER_Y = 180;
+byte CENTER_Y = 120;
 
 Servo sTilt;
 Servo sPan;
@@ -107,15 +107,15 @@ void setup() {
   radio.openWritingPipe(ADDR_TLM);
   radio.startListening();
 
-  //CENTER_X = EEPROM.read(address_center_x);
-  //CENTER_Y = EEPROM.read(address_center_y);
-//
-  //if (CENTER_X == 0 || CENTER_Y == 0) {
-  //  CENTER_X = 80;
-  //  CENTER_Y = 80;
-  //  EEPROM.write(address_center_x, CENTER_X);
-  //  EEPROM.write(address_center_y, CENTER_Y);
-  //}
+  CENTER_X = EEPROM.read(address_center_x);
+  CENTER_Y = EEPROM.read(address_center_y);
+
+  if (CENTER_X >= 250 || CENTER_Y >= 250) {
+    CENTER_X = 90;
+    CENTER_Y = 120;
+    EEPROM.write(address_center_x, CENTER_X);
+    EEPROM.write(address_center_y, CENTER_Y);
+  }
 
   goHome();
 }
