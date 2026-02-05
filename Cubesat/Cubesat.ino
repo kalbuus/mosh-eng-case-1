@@ -26,8 +26,8 @@ const unsigned int address_center_x = 10;
 const unsigned int address_center_y = 11;
 
 // Сервы (0 градусов по нашей системе = 90 градусов на серве)
-byte CENTER_X = 80;
-byte CENTER_Y = 80;
+byte CENTER_X = 90;
+byte CENTER_Y = 180;
 
 Servo sTilt;
 Servo sPan;
@@ -107,15 +107,15 @@ void setup() {
   radio.openWritingPipe(ADDR_TLM);
   radio.startListening();
 
-  CENTER_X = EEPROM.read(address_center_x);
-  CENTER_Y = EEPROM.read(address_center_y);
-
-  if (CENTER_X == 0 || CENTER_Y == 0) {
-    CENTER_X = 80;
-    CENTER_Y = 80;
-    EEPROM.write(address_center_x, CENTER_X);
-    EEPROM.write(address_center_y, CENTER_Y);
-  }
+  //CENTER_X = EEPROM.read(address_center_x);
+  //CENTER_Y = EEPROM.read(address_center_y);
+//
+  //if (CENTER_X == 0 || CENTER_Y == 0) {
+  //  CENTER_X = 80;
+  //  CENTER_Y = 80;
+  //  EEPROM.write(address_center_x, CENTER_X);
+  //  EEPROM.write(address_center_y, CENTER_Y);
+  //}
 
   goHome();
 }
