@@ -2,6 +2,7 @@
 #include <nRF24L01.h>
 #include <RF24.h>
 #include <Servo.h>
+#include <EEPROM.h>
 
 // Пины
 #define CE_PIN   9
@@ -21,9 +22,12 @@ const int ANG_MAX =  30;
 const float STEP = 0.05; // 0..1
 const int DELAY_MS = 800;
 
+const unsigned int address_center_x = 10;
+const unsigned int address_center_y = 11;
+
 // Сервы (0 градусов по нашей системе = 90 градусов на серве)
-int CENTER_X = 80;
-int CENTER_Y = 80;
+byte CENTER_X = 80;
+byte CENTER_Y = 80;
 
 Servo sTilt;
 Servo sPan;
@@ -50,8 +54,8 @@ struct Command {
 } cmd;
 
 void setAngles(int tiltDeg, int panDeg) {
-  sTilt.write(CENTER_X + tiltDeg);
-  sPan.write(CENTER_Y + panDeg);
+  sTilt.write((int)CENTER_X + tiltDeg);
+  sPan.write((int)CENTER_Y + panDeg);
   satdata.tilt = tiltDeg;
   satdata.pan  = panDeg;
 }
@@ -103,6 +107,16 @@ void setup() {
   radio.openWritingPipe(ADDR_TLM);
   radio.startListening();
 
+  CENTER_X = EEPROM.read(address_center_x);
+  CENTER_Y = EEPROM.read(address_center_y);
+
+  if (CENTER_X == 0 || CENTER_Y == 0) {
+    CENTER_X = 80;
+    CENTER_Y = 80;
+    EEPROM.write(address_center_x, CENTER_X);
+    EEPROM.write(address_center_y, CENTER_Y);
+  }
+
   goHome();
 }
 
@@ -121,18 +135,22 @@ void loop() {
         break;
       case calxp:
         CENTER_X++;
+        EEPROM.update(address_center_x, CENTER_X);
         goHome();
         break;
-      case calxn:
+        case calxn:
         CENTER_X--;
+        EEPROM.update(address_center_x, CENTER_X);
         goHome();
         break;
-      case calyp:
+        case calyp:
         CENTER_Y++;
+        EEPROM.update(address_center_y, CENTER_Y);
         goHome();
         break;
-      case calyn:
+        case calyn:
         CENTER_Y--;
+        EEPROM.update(address_center_y, CENTER_Y);
         goHome();
         break;
       case lason:
