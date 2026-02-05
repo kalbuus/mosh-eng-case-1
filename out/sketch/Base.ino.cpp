@@ -1,3 +1,5 @@
+#include <Arduino.h>
+#line 1 "C:\\Users\\Павел\\Documents\\GitHub\\mosh-eng-case-1\\Base\\Base.ino"
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
@@ -34,6 +36,17 @@ struct Data {
   uint8_t mode;
 } satdata;
 
+#line 37 "C:\\Users\\Павел\\Documents\\GitHub\\mosh-eng-case-1\\Base\\Base.ino"
+void sendReset();
+#line 47 "C:\\Users\\Павел\\Documents\\GitHub\\mosh-eng-case-1\\Base\\Base.ino"
+void sendCal(char axis, bool isPositive);
+#line 69 "C:\\Users\\Павел\\Documents\\GitHub\\mosh-eng-case-1\\Base\\Base.ino"
+void toggleLaser();
+#line 83 "C:\\Users\\Павел\\Documents\\GitHub\\mosh-eng-case-1\\Base\\Base.ino"
+void setup();
+#line 101 "C:\\Users\\Павел\\Documents\\GitHub\\mosh-eng-case-1\\Base\\Base.ino"
+void loop();
+#line 37 "C:\\Users\\Павел\\Documents\\GitHub\\mosh-eng-case-1\\Base\\Base.ino"
 void sendReset() {
   cmd.type = reset;
   Serial.println("[COMMAND]: RESET INITIALIZED");
@@ -146,3 +159,4 @@ void loop() {
     }
   }
 }
+

@@ -40,7 +40,9 @@ enum CommandType {
   calxp = 2, // Calibrate X Positive
   calxn = 3, // Calibrate X Negative
   calyp = 4, // Calibrate Y Positive
-  calyn = 5  // Calibrate Y Negative
+  calyn = 5, // Calibrate Y Negative
+  lason = 6,
+  lasoff = 7
 };
 
 struct Command {
@@ -132,6 +134,12 @@ void loop() {
       case calyn:
         CENTER_Y--;
         goHome();
+        break;
+      case lason:
+        digitalWrite(LASER_PIN, HIGH);
+        break;
+      case lasoff:
+        digitalWrite(LASER_PIN, LOW);
         break;
     }
   }

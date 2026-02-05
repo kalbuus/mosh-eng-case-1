@@ -1,11 +1,12 @@
-#include <SPI.h>
-#include <nRF24L01.h>
-#include <RF24.h>
+# 1 "C:\\Users\\Павел\\Documents\\GitHub\\mosh-eng-case-1\\Base\\Base.ino"
+# 2 "C:\\Users\\Павел\\Documents\\GitHub\\mosh-eng-case-1\\Base\\Base.ino" 2
+# 3 "C:\\Users\\Павел\\Documents\\GitHub\\mosh-eng-case-1\\Base\\Base.ino" 2
+# 4 "C:\\Users\\Павел\\Documents\\GitHub\\mosh-eng-case-1\\Base\\Base.ino" 2
 
-#define CE_PIN  9
-#define CSN_PIN 10
 
-RF24 radio(CE_PIN, CSN_PIN);
+
+
+RF24 radio(9, 10);
 
 const byte ADDR_CMD[6] = "IN001";
 const byte ADDR_TLM[6] = "OUT01";

@@ -1,0 +1,8 @@
+{
+    "port": "COM5",
+    "board": "arduino:avr:uno",
+    "programmer": "arduinoasisp",
+    "sketch": "Base\\Base.ino",
+    "sketch_": "Cubesat\\Cubesat.ino",
+    "output": "out"
+}
