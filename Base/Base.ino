@@ -85,7 +85,7 @@ void setup() {
   radio.begin();
   radio.setPALevel(RF24_PA_LOW);
   radio.setDataRate(RF24_1MBPS);
-  radio.setChannel(70);
+  radio.setChannel(76);
 
   radio.openWritingPipe(ADDR_CMD);
   radio.openReadingPipe(1, ADDR_TLM);
