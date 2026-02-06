@@ -17,8 +17,8 @@ const byte ADDR_CMD[6] = "IN001";
 const byte ADDR_TLM[6] = "OUT01";
 
 // Параметры скана
-const int ANG_MIN = -30;
-const int ANG_MAX =  30;
+const int ANG_MIN = -25;
+const int ANG_MAX =  25;
 const float STEP = 0.05; // 0..1
 const int DELAY_MS = 200;
 
@@ -101,7 +101,7 @@ void setup() {
   radio.begin();
   radio.setPALevel(RF24_PA_LOW);
   radio.setDataRate(RF24_1MBPS);
-  radio.setChannel(76);
+  radio.setChannel(70);
 
   radio.openReadingPipe(1, ADDR_CMD);
   radio.openWritingPipe(ADDR_TLM);
